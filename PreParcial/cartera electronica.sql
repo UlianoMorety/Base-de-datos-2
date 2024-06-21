@@ -1,110 +1,75 @@
-CREATE DATABASE preparcial;
-use preparcial;
+create database cartera_electronica;
+use cartera_electronica;
 
-create table aseguradoras(
-id_aseguradora int auto_increment not null,
-nombre varchar(50) not null,
-contraseña varchar(40),
-direccion varchar(100) not null,
-correo varchar(40),
-telefono varchar(20),
-createat datetime,
-updateat datetime,
-primary key(id_aseguradora)
+create table users(
+	user_id int auto_increment,
+    name varchar(25) not null,
+    password varchar(20) not null,
+    salt numeric,
+    balance numeric,
+    primary key(user_id)
 );
 
-create table usuarios(
-id_usuario int auto_increment not null,
-nombre varchar(50),
-cedula varchar(15),
-id_aseguradora int,
-primary key(id_usuario),
-FOREIGN KEY(id_aseguradora) REFERENCES aseguradoras(id_aseguradora)
+create table contacts(
+	user_id int not null,
+    friend_id int not null,
+    FOREIGN KEY(user_id) REFERENCES users(user_id),
+    FOREIGN KEY(friend_id) REFERENCES users(user_id)
 );
 
-create table juzgados(
-id_juzgado int auto_increment not null,
-nombre_juz varchar(20),
-direccion varchar(200),
-primary key(id_juzgado)
+create table user_details(
+	account_no int auto_increment,
+    type varchar(25) not null,
+    phone varchar(20) not null,
+    aadhar_doc int,
+    image blob,
+    user_id int not null,
+    primary key(account_no),
+    foreign key(user_id) references users(user_id)
 );
 
-create table casos(
-numero_caso int not null auto_increment,
-id_juzgado int,
-descrip varchar(200),
-estatus enum("en curso","pendiente","cerrado"),
-primary key(numero_caso),
-FOREIGN KEY(id_juzgado) REFERENCES juzgados(id_juzgado)
+create table transactions(
+	request_id int auto_increment not null,
+    from_id int not null,
+    to_id int not null,
+    amount numeric not null,
+    reason varchar(32),
+    status varchar(20),
+    timestamp datetime,	
+    category varchar(10),
+    request_send varchar(10),
+    primary key(request_id),
+    foreign key(from_id) references users(user_id),
+    foreign key(to_id) references users(user_id)
 );
-create table expedientes(
-id_exp int not null auto_increment,
-conductor varchar(15),
-id_aseguradora int not null,
-numero_caso int not null,
-primary key(id_exp),
-FOREIGN KEY(id_aseguradora) REFERENCES aseguradoras(id_aseguradora),
-FOREIGN KEY(numero_caso) REFERENCES casos(numero_caso)
-);
-INSERT INTO aseguradoras (nombre, contraseña, direccion, correo, telefono, createat, updateat) VALUES 
-('Mapfre', 'mapfre123', 'Costa del este, Panama', 'contacto@mapfre.com', '+507 321 1234', NOW(), NOW()),
-('Allianz', 'allianz123', 'Calle 50 , Panama', 'info@allianz.com', '+507 756 7890', NOW(), NOW()),
-('AXA', 'axa123', 'Casco antiguo, Panama', 'servicio@axa.com.mx', '+507 201 2345', NOW(), NOW()),
-('SURA', 'sura123', 'Calle 50 , Panama', 'ayuda@sura.com', '+507 312 5678', NOW(), NOW()),
-('Zurich', 'zurich123', 'costa arriba, Colon', 'contacto@zurich.com', '+507 390 5678', NOW(), NOW());
 
--- Insertar registros en la tabla usuarios
-INSERT INTO usuarios (nombre, cedula, id_aseguradora) VALUES 
-('Juan Pérez', '8-348-90', 1),
-('Ana Gómez', '4-778-5212', 2),
-('Luis Martínez', 'PE-342-870', 2),
-('Carla Rojas', '8-890-115', 4),
-('José López', 'DNI87654321', 5);
+INSERT INTO users (name, password, salt, balance) VALUES 
+('Alice Smith', 'password123', 123456, 500.75),
+('Bob Johnson', 'securepass', 654321, 300.50),
+('Carol White', 'mypassword', 112233, 750.00),
+('Dave Brown', 'pass4321', 334455, 250.25),
+('Eve Davis', '1234pass', 556677, 1000.00);
 
--- Insertar registros en la tabla juzgados
-INSERT INTO juzgados (nombre_juz, direccion) VALUES 
-('Juzgado Civil 1', 'Av. 5 de Mayo, Panama'),
-('Juzgado Penal 2', 'juan diaz, panama'),
-('Juzgado Laboral 3', 'cuatro altos, Ciudad de Colon'),
-('Juzgado Administrativo 4', 'Calle 50, Panama'),
-('Juzgado Familiar 5', 'David, Chiriqui');
+-- Insertar registros en la tabla contacts
+INSERT INTO contacts (user_id, friend_id) VALUES 
+(1, 2),
+(2, 3),
+(3, 4),
+(4, 5),
+(5, 1);
 
--- Insertar registros en la tabla casos
-INSERT INTO casos (id_juzgado, descrip, estatus) VALUES 
-(1, 'Demanda por incumplimiento de contrato','en curso'),
-(2, 'Caso de robo con agravantes','pendiente'),
-(3, 'Despido injustificado','en curso'),
-(4, 'Demanda contra la administración pública','cerrado'),
-(5, 'Custodia de menores','pendiente'),
-(4, 'Pension alimenticia','pendiente');
--- Insertar registros en la tabla expedientes
-INSERT INTO expedientes (conductor, id_aseguradora, numero_caso) VALUES 
-('Carlos Méndez', 1, 2),
-('María Fernández', 2, 4),
-('Pedro González', 3,1),
-('Sofía Ramírez', 4, 5),
-('Diego Torres', 5, 5);
+-- Insertar registros en la tabla user_details
+INSERT INTO user_details (type, phone, aadhar_doc, user_id) VALUES 
+('Savings', '555-1234', 123456789, 1),
+('Current', '555-5678', 987654321, 2),
+('Savings', '555-8765', 456789123, 3),
+('Current', '555-4321', 789123456, 4),
+('Savings', '555-8765', 321654987, 5);
 
-create view pendientes as 
-select e.conductor as conductor, j.nombre_juz as juzgado, a.nombre as aseguradora, c.estatus as estatus
-from aseguradoras a
-join expedientes e on a.id_aseguradora=e.id_aseguradora
-join casos c on e.numero_caso=c.numero_caso
-join juzgados j on c.id_juzgado = j.id_juzgado
-where c.estatus = 'pendiente';
-
-create view en_curso as 
-select e.conductor as conductor, j.nombre_juz as juzgado, a.nombre as aseguradora, c.estatus as estatus
-from aseguradoras a
-join expedientes e on a.id_aseguradora=e.id_aseguradora
-join casos c on e.numero_caso=c.numero_caso
-join juzgados j on c.id_juzgado = j.id_juzgado
-where c.estatus = 'en curso';
-
-create view cerrados as 
-select e.conductor as conductor, j.nombre_juz as juzgado, a.nombre as aseguradora, c.estatus as estatus
-from aseguradoras a
-join expedientes e on a.id_aseguradora=e.id_aseguradora
-join casos c on e.numero_caso=c.numero_caso
-join juzgados j on c.id_juzgado = j.id_juzgado
-where c.estatus = 'cerrado';
+-- Insertar registros en la tabla transactions
+INSERT INTO transactions (from_id, to_id, amount, reason, status, timestamp, category, request_send) VALUES 
+(1, 2, 50.00, 'Dinner', 'Completed', NOW(), 'Food', 'Yes'),
+(2, 3, 75.50, 'Groceries', 'Completed', NOW(), 'Shopping', 'Yes'),
+(3, 4, 100.00, 'Rent', 'Pending', NOW(), 'Housing', 'No'),
+(4, 5, 200.75, 'Car Payment', 'Completed', NOW(), 'Transport', 'Yes'),
+(5, 1, 150.00, 'Utilities', 'Failed', NOW(), 'Bills', 'No');
