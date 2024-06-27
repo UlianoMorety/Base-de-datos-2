@@ -1,0 +1,107 @@
+-- Selecciona la base de datos
+USE Parcial1DB;
+
+-- Insertar registros en la tabla 'usuarios'
+INSERT INTO usuarios (nombre, apellido, nombre_usuario, token, contraseña, tipo_usuario, sexo, estado_civil, tipo_empresa, direccion, createat, updateat) VALUES
+('Juan', 'Perez', 'jperez', 'token123', 'J0hnD03', 'cliente', 'masculino', 'soltero/a', 'privada', 'Calle 50, Panama', NOW(), NOW()),
+('Maria', 'Gonzalez', 'mgonzalez', 'token456', 'C0ntr4señ@', 'administrador', 'femenino', 'casado/a', 'publica', 'Via Espana, Panama', NOW(), NOW()),
+('Carlos', 'Rodriguez', 'crodriguez', 'token789', 'c4rl0s2021', 'vendedor', 'masculino', 'divorciado/a', 'privada', 'San Francisco, Panama', NOW(), NOW()),
+('Ana', 'Lopez', 'alopez', 'token101', 'AnL0P35', 'cliente', 'femenino', 'soltero/a', 'publica', 'Calle 50, Panama', NOW(), NOW()),
+('Luis', 'Fernandez', 'lfernandez', 'token102', 'Luisitof25', 'ejecutivo', 'masculino', 'casado/a', 'privada', 'El Cangrejo, Panama', NOW(), NOW()),
+('Sofia', 'Martinez', 'smartinez', 'token103', 'Icecr34m*', 'vendedor', 'femenino', 'divorciado/a', 'publica', 'Bella Vista, Panama', NOW(), NOW()),
+('Pedro', 'Garcia', 'pgarcia', 'token104', 'Petegar84/', 'administrador', 'masculino', 'unido/a', 'privada', 'Costa del Este, Panama', NOW(), NOW()),
+('Laura', 'Hernandez', 'lhernandez', 'token105', '1q2w3e4r5t6y7u8i', 'cliente', 'femenino', 'viudo/a', 'publica', 'San Miguelito, Panama', NOW(), NOW()),
+('Miguel', 'Sanchez', 'msanchez', 'token106', 'C0ntr4señ@Segura123', 'ejecutivo', 'masculino', 'soltero/a', 'privada', 'Punta Pacifica, Panama', NOW(), NOW()),
+('Daniela', 'Diaz', 'ddiaz', 'token107', 'P@$<spania', 'vendedor', 'femenino', 'casado/a', 'publica', 'Bethania, Panama', NOW(), NOW()),
+('Luis', 'Torres', 'ltorres', 'token108', 'LUCHOT777&', 'cliente', 'masculino', 'divorciado/a', 'privada', 'Obarrio, Panama', NOW(), NOW()),
+('Camila', 'Ruiz', 'cruiz', 'token109', 'c4m1ru1z', 'administrador', 'femenino', 'unido/a', 'publica', 'Panama Viejo, Panama', NOW(), NOW()),
+('Roberto', 'Ortiz', 'rortiz', 'token110', 'b0bor71z', 'cliente', 'masculino', 'viudo/a', 'privada', 'Tumba Muerto, Panama', NOW(), NOW()),
+('Elena', 'Morales', 'emorales', 'token111', 'Moralito', 'vendedor', 'femenino', 'soltero/a', 'publica', 'Calle 50, Panama', NOW(), NOW()),
+('Francisco', 'Gomez', 'fgomez', 'token112', 'c0ntraseña2022', 'administrador', 'masculino', 'casado/a', 'privada', 'San Miguelito, Panama', NOW(), NOW()),
+('Isabel', 'Castillo', 'icastillo', 'token113', 'password113', 'cliente', 'femenino', 'divorciado/a', 'publica', 'Calle 50, Panama', NOW(), NOW()),
+('Oscar', 'Reyes', 'oreyes', 'token114', 'contrasenaaaa1234', 'ejecutivo', 'masculino', 'unido/a', 'privada', 'Colon, Colon', NOW(), NOW()),
+('Ana', 'Jimenez', 'ajimenez', 'token115', 'Anitaji', 'vendedor', 'femenino', 'viudo/a', 'publica', 'Bethania, Panama', NOW(), NOW()),
+('Andres', 'Gutierrez', 'agutierrez', 'token116', 'Andygy', 'cliente', 'masculino', 'soltero/a', 'privada', 'San Miguelito, Panama', NOW(), NOW()),
+('Fernanda', 'Vargas', 'fvargas', 'token117', 'Segura', 'administrador', 'femenino', 'casado/a', 'publica', 'Santiago, Veraguas', NOW(), NOW());
+
+-- Insertar registros en la tabla 'autenticaciones'
+INSERT INTO autenticaciones (nombre_usuario, contraseña, agente_usuario, token, createat, updateat) VALUES
+('jperez', 'J0hnD03', 'Mozilla/5.0', 'token123', NOW(), NOW()),
+('mgonzalez', 'C0ntr4señ@', 'Chrome/91.0', 'token456', NOW(), NOW()),
+('crodriguez', 'pass789', 'Safari/14.1', 'token789', NOW(), NOW()),
+('alopez', 'AnL0P35', 'Edge/91.0', 'token101', NOW(), NOW()),
+('lfernandez', 'Luisitof25', 'Opera/76.0', 'token102', NOW(), NOW()),
+('smartinez', 'Icecr34m*', 'Firefox/89.0', 'token103', NOW(), NOW()),
+('pgarcia', 'Petegar84/', 'Mozilla/5.0', 'token104', NOW(), NOW()),
+('lhernandez', '1q2w3e4r5t6y7u8i', 'Chrome/91.0', 'token105', NOW(), NOW()),
+('msanchez', 'C0ntr4señ@Segura123', 'Safari/14.1', 'token106', NOW(), NOW()),
+('ddiaz', 'P@$<spania', 'Edge/91.0', 'token107', NOW(), NOW()),
+('ltorres', 'LUCHOT777&', 'Opera/76.0', 'token108', NOW(), NOW()),
+('cruiz', 'c4m1ru1z', 'Firefox/89.0', 'token109', NOW(), NOW()),
+('rortiz', 'b0bor71z', 'Mozilla/5.0', 'token110', NOW(), NOW()),
+('emorales', 'Moralito', 'Chrome/91.0', 'token111', NOW(), NOW()),
+('fgomez', 'c0ntraseña2022', 'Safari/14.1', 'token112', NOW(), NOW()),
+('icastillo', 'password113', 'Edge/91.0', 'token113', NOW(), NOW()),
+('oreyes', 'contrasenaaaa1234', 'Opera/76.0', 'token114', NOW(), NOW()),
+('ajimenez', 'Anitaji', 'Firefox/89.0', 'token115', NOW(), NOW()),
+('agutierrez', 'Andygy', 'Mozilla/5.0', 'token116', NOW(), NOW()),
+('fvargas', 'Segura', 'Chrome/91.0', 'token117', NOW(), NOW());
+
+INSERT INTO pagos (tarjeta_tipo, numero, nombre_usuario, cvc, expiracion, id_usuario, createat, updateat) VALUES
+('Visa', 134567854325456, 'jperez', '123', '2025-12-31', 1, NOW(), NOW()),
+('MasterCard', 2345678901234567, 'mgonzalez', '456', '2026-11-30', 2, NOW(), NOW()),
+('Clave', 3456789012345678, 'crodriguez', '789', '2024-10-31', 3, NOW(), NOW()),
+('American Express', 4567890123456789, 'alopez', '2101', '2023-09-30', 4, NOW(), NOW()),
+('Discovery', 5678901234567890, 'lfernandez', '102', '2027-08-31', 5, NOW(), NOW()),
+('Diners Club', 6432892345678008, 'smartinez', '103', '2025-07-31', 6, NOW(), NOW()),
+('Visa', 7890123456789012, 'pgarcia', '104', '2026-06-30', 7, NOW(), NOW()),
+('MasterCard', 8901234567890123, 'lfernandez', '105', '2024-05-31', 8, NOW(), NOW()),
+('Clave', 9065527098901234, 'msanchez', '106', '2023-04-30', 9, NOW(), NOW()),
+('American Express', 1234567890123457, 'ddiaz', '1457', '2025-03-31', 10, NOW(), NOW()),
+('MasterCard', 2091178901234568, 'jtorres', '108', '2027-02-28', 11, NOW(), NOW()),
+('Diners Club', 3456789012345679, 'cruiz', '979', '2026-01-31', 12, NOW(), NOW()),
+('Visa', 4567890832113670, 'rortiz', '110', '2024-12-31', 13, NOW(), NOW()),
+('MasterCard', 5678901234567891, 'emorales', '111', '2023-11-30', 14, NOW(), NOW()),
+('MasterCard', 6778301234567802, 'fgomez', '307', '2025-10-31', 15, NOW(), NOW()),
+('American Express', 7890123456789013, 'icastillo', '8175', '2026-09-30', 16, NOW(), NOW()),
+('Discovery', 8901234567890124, 'oreyes', '114', '2027-08-31', 17, NOW(), NOW()),
+('Diners Club', 9211075678901235, 'vjimenez', '115', '2023-07-31', 18, NOW(), NOW()),
+('Visa', 1234567890123458, 'agutierrez', '116', '2024-06-30', 19, NOW(), NOW()),
+('MasterCard', 4390678908451269, 'fvargas', '107', '2025-05-31', 20, NOW(), NOW());
+
+INSERT INTO pruebas (referencia, nombre_prueba, descripcion, fecha_ingreso, estatus)
+VALUES
+  ('RECON-001', 'Reconocimiento de red', 'Escaneo de la red para identificar activos y vulnerabilidades',NOW(), 'Activo'),
+  ('ANVA-001', 'Análisis de vulnerabilidad', 'Análisis detallado de vulnerabilidades identificadas en el reconocimiento', NOW(), 'Activo'),
+  ('EXPLO-001', 'Explotación de vulnerabilidades', 'Demostración de la explotación de vulnerabilidades identificadas', NOW(), 'Activo'),
+  ('ESCAP-001', 'Escalada de privilegios', 'Obtención de privilegios elevados en sistemas comprometidos', NOW(), 'Activo'),
+  ('PRUEBA-001', 'Prueba de autenticación', 'Verificación de la seguridad de los mecanismos de autenticación', NOW(), 'Activo'),
+  ('PRUEBA-002', 'Prueba de autorización', 'Verificación de la correcta asignación de permisos y roles', NOW(), 'Desactivado'),
+  ('PRUEBA-003', 'Prueba de integridad de datos', 'Verificación de la integridad de los datos almacenados', NOW(), 'Activo'),
+  ('PRUEBA-004', 'Prueba de confidencialidad de datos', 'Verificación de la confidencialidad de los datos almacenados', NOW(), 'Desactivado'),
+  ('PRUEBA-005', 'Prueba de disponibilidad de servicios', 'Verificación de la disponibilidad de los servicios críticos', NOW(), 'Activo'),
+  ('PRUEBA-006', 'Prueba de recuperación de desastres', 'Verificación de la capacidad de recuperación ante desastres', NOW(), 'Activo'),
+  ('PRUEBA-007', 'Prueba de penetración', 'Simulación de un ataque real para evaluar la seguridad general del sistema', NOW(), 'Activo'),
+  ('PRUEBA-008', 'Prueba de fuzzing', 'Introducción de datos no válidos para identificar posibles vulnerabilidades', NOW(), 'Desactivado'),
+  ('PRUEBA-009', 'Prueba de ingeniería social', 'Evaluación de la susceptibilidad de los usuarios a ataques de ingeniería social', NOW(), 'Activo'),
+  ('PRUEBA-010', 'Prueba de seguridad física', 'Evaluación de la seguridad física de las instalaciones y equipos', NOW(), 'Activo'),
+  ('PRUEBA-011', 'Prueba de software', 'Análisis de la seguridad del código fuente y del software compilado', NOW(), 'Desactivado'),
+  ('PRUEBA-012', 'Prueba de aplicaciones web', 'Análisis de la seguridad de las aplicaciones web', NOW(), 'Activo'),
+  ('PRUEBA-013', 'Prueba de dispositivos móviles', 'Análisis de la seguridad de los dispositivos móviles y aplicaciones', NOW(), 'Desactivado'),
+  ('PRUEBA-014', 'Prueba de IoT', 'Análisis de la seguridad de los dispositivos y redes de IoT', NOW(), 'Desactivado'),
+  ('PRUEBA-015', 'Prueba de cloud computing', 'Análisis de la seguridad de los servicios y entornos de cloud computing', NOW(), 'Activo'),
+  ('PRUEBA-016', 'Prueba de blockchain', 'Análisis de la seguridad de las tecnologías y aplicaciones blockchain', NOW(), 'Activo'),
+  ('PRUEBA-017', 'Prueba de inteligencia artificial', 'Análisis de la seguridad de los sistemas y aplicaciones de inteligencia artificial', NOW(), 'Desactivado'),
+  ('PRUEBA-018', 'Prueba de seguridad en DevOps', 'Análisis de la seguridad en los procesos y herramientas de DevOps', NOW(), 'Activo'),
+  ('PRUEBA-019', 'Prueba de seguridad en contenedores', 'Análisis de la seguridad en los contenedores y orquestadores de contenedores',NOW(), 'Activo'),
+  ('PRUEBA-020', 'Prueba de seguridad en microservicios', 'Análisis de la seguridad en las arquitecturas de microservicios', NOW(), 'Desactivado');
+
+INSERT INTO test (id_prueba, id_usuario, fecha_test)
+VALUES(1, 1,NOW()),(1, 2,NOW()),(1, 3,NOW()),(1, 4,NOW()),(1, 5,NOW()),(2, 6,NOW()),(2, 7,NOW()),(2, 8,NOW()),(2, 9,NOW()),(2, 10,NOW()),(3, 11,NOW()),(3, 12,NOW()),(3, 13,NOW()),(3, 14,NOW()),
+  (3, 15,NOW()),(4, 16,NOW()),(4, 17,NOW()),(4, 18,NOW()),(4, 19,NOW()),(4, 20,NOW()),(5, 1,NOW()),(5, 2,NOW()),(5, 3,NOW()),(5, 4,NOW()),(5, 5,NOW()),(6, 6,NOW()),(6, 7,NOW()),(6, 8,NOW()),
+  (6, 9,NOW()),(6, 10,NOW()),(7, 11,NOW()),(7, 12,NOW()),(7, 13,NOW()),(7, 14,NOW()),(7, 15,NOW()),(8, 16,NOW()),(8, 17,NOW()),(8, 18,NOW()),(8, 19,NOW()),(8, 20,NOW()),(9, 1,NOW()),
+  (9, 2,NOW()),(9, 3,NOW()),(9, 4,NOW()),(9, 5,NOW()),(10, 6,NOW()),(10, 7,NOW()),(10, 8,NOW()),(10, 9,NOW()),(10, 10,NOW()),(11, 11,NOW()),(11, 12,NOW()),(11, 13,NOW()),(11, 14,NOW()),
+  (11, 15,NOW()),(12, 16,NOW()),(12, 17,NOW()),(12, 18,NOW()),(12, 19,NOW()),(12, 20,NOW()),(13, 1,NOW()),(13, 2,NOW()),(13, 3,NOW()),(13, 4,NOW()),(13, 5,NOW()),(14, 6,NOW()),(14, 7,NOW()),
+  (14, 8,NOW()),(14, 9,NOW()),(14, 10,NOW()),(15, 11,NOW()),(15, 12,NOW()),(15, 13,NOW()),(15, 14,NOW()),(15, 15,NOW()),(16, 16,NOW()),(16, 17,NOW()),(16, 18,NOW()),(16, 19,NOW()),(16, 20,NOW()),
+  (17, 1,NOW()),(17, 2,NOW()),(17, 3,NOW()),(17, 4,NOW()),(17, 5,NOW()),(18, 6,NOW()),(18, 7,NOW()),(18, 8,NOW()),(18, 9,NOW()),(18, 10,NOW()),(19, 11,NOW()),(19, 12,NOW()),(19, 13,NOW()),(19, 14,NOW()),
+  (19, 15,NOW()),(20, 16,NOW()),(20, 17,NOW()),(20, 18,NOW()),(20, 19,NOW()),(20, 20,NOW());
